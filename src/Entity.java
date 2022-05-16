@@ -25,8 +25,8 @@ public abstract class Entity {
     }
 
     public void incrementDist(double dist){ //add the sin and cos vals of dist for ang to x/y
-        this.x = dist * Math.cos(Math.toRadians(ang));
-        this.y = dist * Math.sin(Math.toRadians(ang));
+        this.x += dist * Math.cos(Math.toRadians(ang));
+        this.y += dist * Math.sin(Math.toRadians(ang));
     }
 
     public void setAng(double ang) {
