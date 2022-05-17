@@ -53,27 +53,7 @@ public class Game implements KeyListener{
     public void keyReleased(KeyEvent e) {
 
     }
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
 
-        for(Line armPiece: arms){
-            Graphics2D g2d = (Graphics2D) g.create();
-            //System.out.print(""+(int)armPiece.getOrg().getX()+(int) armPiece.getOrg().getY()+ (int)armPiece.findB().getX()+ (int)armPiece.findB().getY());
-            Line2D lin = new Line2D.Float((int)armPiece.getOrg().getX(),(int) armPiece.getOrg().getY(), (int)armPiece.findB().getX(), (int)armPiece.findB().getY());
-            g2d.draw(lin);
-            g2d.dispose();
-        }
-        // if (selection != null) {
-        //     g.setColor(UIManager.getColor("List.selectionBackground"));
-        //     Graphics2D g2d = (Graphics2D) g.create();
-        //     g2d.setComposite(AlphaComposite.SrcOver.derive(0.5f));
-        //     g2d.fill(selection);
-        //     g2d.dispose();
-        //     g2d = (Graphics2D) g.create();
-        //     g2d.draw(selection);
-        //     g2d.dispose();
-        // }
-    }
 
     @Override
     public void keyTyped(KeyEvent e) {
