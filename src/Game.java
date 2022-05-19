@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
 public class Game{
     private Player player;
@@ -11,16 +12,24 @@ public class Game{
 //    private TextArea area;
 
     public Game(String name){
-        player = new Player(name,0,0,0);
+        player = new Player(name,300,300,0);
         frame = new JFrame();
         dis = new Display(player);
 //        l = new JLabel();
 //// setting the location of the label in frame
 //        l.setBounds (20, 50, 100, 20);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+    }
+
+    public void createAndShowGui() throws IOException {
+
+        // create the drawing JPanel
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         dis.addKeyListener(dis);
         dis.setFocusable(true);
-        frame.add(dis);
+        frame.getContentPane().add(dis);
+        frame.pack();
+
 
 // adding the label and text area to the frame
 //        frame.add(l);
@@ -29,7 +38,6 @@ public class Game{
         frame.setLayout (null);
         frame.setVisible (true);
     }
-
 
 
 }

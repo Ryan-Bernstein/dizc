@@ -9,19 +9,21 @@ public class Display extends JPanel implements KeyListener {
     private int[] dimentions = {1920, 1080};
     private int[] lDimentions = {20, 50, 100, 20};
 
-    public Display(Player player){
+    public Display(Player player) {
         this.player = player;
     }
 
     protected void paintComponent(Graphics g) { // this will be called by repaint();
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g.create(); // create graphics engine
-        Rectangle lin = new Line2D.Float((int) player.getX(), (int) player.getY() + 10, (int) player.getX(), (int) player.getY() - 10);// generate the line obj
-        g2d.draw(lin); //draw the line
-        g2d.dispose(); //clear the object
+//        Rectangle lin = new Rectangle();// generate the line obj
+        g2d.setColor(Color.BLACK);
+        g2d.fillRect((int) player.getX() + 10, (int) player.getY() + 10, (int) player.getX() - 10, (int) player.getY() - 10); //draw the line
+//        g2d.dispose(); //clear the object
     }
+
     @Override
-    public void keyPressed(KeyEvent e){ //the keyboard listener implementation
+    public void keyPressed(KeyEvent e) { //the keyboard listener implementation
         // New key press (ps I took part of this code)
         int key = e.getKeyCode();
         double angleBit = 10, distBit = 10;
@@ -39,7 +41,9 @@ public class Display extends JPanel implements KeyListener {
         if (key == KeyEvent.VK_DOWN) {
             dist -= distBit;
         }
+
         player.move(dist, angle);
+        System.out.println(key);
         System.out.println(player);//temp line
         repaint();//temp
     }
@@ -52,6 +56,11 @@ public class Display extends JPanel implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
+
+
+    }
+
+    public static void main(String[] args) {
 
     }
 
