@@ -5,13 +5,13 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class TestPane extends JPanel implements KeyListener{
+public class TestPanel extends JPanel implements KeyListener{
 
     private Player player;
     private int[] dimentions = {1920, 1080};
     private int[] lDimentions = {20, 50, 100, 20};
 
-    public TestPane(Player player) {
+    public TestPanel(Player player) {
 
 
 
