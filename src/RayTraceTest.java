@@ -8,11 +8,17 @@ public class RayTraceTest {
                               {'#','.','.','.','.','.','#'},
                               {'.','#','.','.','.','#','#'}};
     private Player player;
-    private double FOV = Math.PI / 4;
+    private double FOV = Math.PI / 16;
     private int res;
     private double rayRes;
 
-    private double[] findRays(){
+    public RayTraceTest(Player _player, int _res, double _rayRes){
+        player = _player;
+        res = _res;
+        rayRes = _rayRes;
+    }
+
+    public double[] findRays(){
         double[] out = new double[res];
         for(int i = 0; i < res; i++){
             double rayAngle = (player.getAng() - FOV / 2.0) + ((double) i / (double) res) * FOV;
@@ -33,6 +39,7 @@ public class RayTraceTest {
         }
         return distanceToWall;
     }
+
 
     private void genDraw(double[] dists){
 
