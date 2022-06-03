@@ -7,10 +7,14 @@ import java.awt.geom.Line2D;
 public class Display extends JPanel implements KeyListener {
     private Player player;
     private int[] dimentions = {1920, 1080};
-    private int[] lDimentions = {20, 50, 100, 20};
+//    private int[] lDimentions = {20, 50, 100, 20};
 
     public Display(Player player) {
         this.player = player;
+    }
+
+    public int[] getDimentions() {
+        return dimentions;
     }
 
     protected void paintComponent(Graphics g) { // this will be called by repaint();

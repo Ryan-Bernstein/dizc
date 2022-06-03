@@ -1,3 +1,6 @@
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+
 public class RayTraceTest {
     private char[][] field = {{'#','.','#','#','#','.','.'},
                               {'#','.','.','.','#','.','.'},
@@ -8,14 +11,17 @@ public class RayTraceTest {
                               {'#','.','.','.','.','.','#'},
                               {'.','#','.','.','.','#','#'}};
     private Player player;
-    private double FOV = Math.PI / 16;
+    private double FOV = Math.PI / 4, renderDistance = 4;
     private int res;
     private double rayRes;
+    private Display display;
 
-    public RayTraceTest(Player _player, int _res, double _rayRes){
+
+    public RayTraceTest(Player _player, int _res, double _rayRes, Display display){
         player = _player;
         res = _res;
         rayRes = _rayRes;
+        this.display = display;
     }
 
     public double[] findRays(){
@@ -40,8 +46,12 @@ public class RayTraceTest {
         return distanceToWall;
     }
 
+    private ArrayList<Rectangle2D> genDraw(double[] dists){
+        for (double dist: dists) {
+            int screenHeight = display.getDimentions()[1];
+            int nCeiling = (double) (screenHeight / 2.0) - screenHeight / ((double) dist)
 
-    private void genDraw(double[] dists){
-
+        }
     }
 }
+
