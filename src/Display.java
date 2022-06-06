@@ -13,7 +13,7 @@ public class Display extends JPanel implements KeyListener {
 
     public Display(Player player) {
         this.player = player;
-        this.engine = new RayTraceTest(player, 600, 0.01, this); //VISUAL SETTINGS
+        this.engine = new RayTraceTest(player, 1000, 0.01, this); //VISUAL SETTINGS
     }
 
     public int[] getDimentions() {

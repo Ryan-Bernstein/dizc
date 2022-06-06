@@ -54,6 +54,7 @@ public class RayTraceTest {
             int nCeiling = (dist > 2) ? (int)((screenHeight / 2.0) - screenHeight / ((double) dist)) : (int)((screenHeight / 2.0) - screenHeight / ((double) 2)) ;
             System.out.print(nCeiling);
             int nfloor = screenHeight - nCeiling;
+            out.add(new Column(nCeiling, nfloor, res, col * 2 + 1, dist, screenWidth));
             out.add(new Column(nCeiling, nfloor, res, col * 2, dist, screenWidth));
         }
         return out;
