@@ -3,14 +3,17 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 
 public class Display extends JPanel implements KeyListener {
     private Player player;
-    private int[] dimentions = {1920, 1080};
-//    private int[] lDimentions = {20, 50, 100, 20};
+    private RayTraceTest engine;
+    private int[] dimentions = {1600, 900};
 
     public Display(Player player) {
         this.player = player;
+        this.engine = new RayTraceTest(player, 600, 0.01, this); //VISUAL SETTINGS
     }
 
     public int[] getDimentions() {
@@ -19,35 +22,43 @@ public class Display extends JPanel implements KeyListener {
 
     protected void paintComponent(Graphics g) { // this will be called by repaint();
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g.create(); // create graphics engine
-//        Rectangle lin = new Rectangle();// generate the line obj
-        g2d.setColor(Color.BLACK);
-        g2d.fillRect((int) player.getX() + 10, (int) player.getY() + 10, (int) player.getX() - 10, (int) player.getY() - 10); //draw the line
-//        g2d.dispose(); //clear the object
+
+//        Graphics2D g2d = (Graphics2D) g.create(); // create graphics engine
+        ArrayList<Column> renderSet= engine.getRenderSet();
+        for (Column col: renderSet) {
+            g.setColor(col.getColor());
+            Rectangle2D rect = col.getRect();
+            g.fillRect((int)rect.getX(), (int)rect.getY(), (int)rect.getWidth(), (int)rect.getHeight());
+        }
     }
 
     @Override
     public void keyPressed(KeyEvent e) { //the keyboard listener implementation
         // New key press (ps I took part of this code)
         int key = e.getKeyCode();
-        double angleBit = 10, distBit = 10;
+        double angleBit = 3, distBit = 0.1;
         // If we press right
         double dist = 0, angle = 0;
-        if (key == KeyEvent.VK_RIGHT) {
-            angle += angleBit;
-        }
-        if (key == KeyEvent.VK_LEFT) {
-            angle -= angleBit;
-        }
-        if (key == KeyEvent.VK_UP) {
-            dist += distBit;
-        }
-        if (key == KeyEvent.VK_DOWN) {
-            dist -= distBit;
-        }
 
+        switch (key) {
+            case KeyEvent.VK_RIGHT:
+                angle += angleBit;
+                break;
+            case KeyEvent.VK_LEFT:
+                angle -= angleBit;
+                break;
+            case KeyEvent.VK_UP:
+                dist += distBit;
+                break;
+            case KeyEvent.VK_DOWN:
+                dist -= distBit;
+                break;
+        }
         player.move(dist, angle);
-        System.out.println(key);
+//        for(Column col: engine.getRenderSet()) {
+//            System.out.print(col);
+//        } // debugging
+//        System.out.println();
         System.out.println(player);//temp line
         repaint();//temp
     }
