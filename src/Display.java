@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Display extends JPanel implements KeyListener {
     private Player player;
     private RayTraceTest engine;
-    private int[] dimentions = {1600, 900};
+    private int[] dimentions = {1024, 768};
 
     public Display(Player player) {
         this.player = player;
@@ -55,11 +55,12 @@ public class Display extends JPanel implements KeyListener {
                 break;
         }
         player.move(dist, angle);
+//        player.move(dist, angle);
 //        for(Column col: engine.getRenderSet()) {
-//            System.out.print(col);
+//            System.out.print(col.getHeight() + ",");
 //        } // debugging
 //        System.out.println();
-        System.out.println(player);//temp line
+//        System.out.println(player);//temp line
         repaint();//temp
     }
 
