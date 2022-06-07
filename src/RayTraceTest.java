@@ -16,6 +16,9 @@ public class RayTraceTest {
     private double rayRes;
     private Display display;
 
+    public char[][] getField() {
+        return field;
+    }
 
     public RayTraceTest(Player _player, int _res, double _rayRes, Display display){
         player = _player;
@@ -27,7 +30,7 @@ public class RayTraceTest {
     private double[] findRays(){
         double[] out = new double[res];
         for(int i = 0; i < res; i++){
-            double rayAngle = (Math.toRadians(player.getAng()) - FOV / 4.0) + ((double) i / (double) res) * FOV;
+            double rayAngle = (Math.toRadians(player.getAng()) - FOV / (display.getWidth() * .0023) + ((double) i / (double) res) * FOV);
             out[i] = findDist(rayAngle);
 //            if(i * 2 == res){System.out.println(rayAngle);}
         }

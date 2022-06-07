@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
+import java.util.Scanner;
 
 public class Launcher {
     private Display display;
@@ -17,7 +17,13 @@ public class Launcher {
     public Launcher() {
         if(this.player == null){
             this.player = new Player("Dam", 3.5,3.5,0);
-            this.display = new Display(player);
+            Scanner input = new Scanner(System.in);
+            System.out.print("enter screen width in pixels: ");
+            int width = input.nextInt();
+
+            System.out.print("enter screen height in pixels: ");
+            int height = input.nextInt();
+            this.display = new Display(player, width, height);
 
         }
         EventQueue.invokeLater(new Runnable() {

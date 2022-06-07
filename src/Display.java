@@ -9,11 +9,15 @@ import java.util.ArrayList;
 public class Display extends JPanel implements KeyListener {
     private Player player;
     private RayTraceTest engine;
-    private int[] dimentions = {1920, 1080};
+    private int[] dimentions = {1024, 768};
 
-    public Display(Player player) {
+    public Display(Player player, int width, int height) {
+        this.dimentions[0] = width;
+        this.dimentions[1] = height;
         this.player = player;
-        this.engine = new RayTraceTest(player, 600, 0.01, this); //VISUAL SETTINGS
+        this.engine = new RayTraceTest(player, 600, 0.01, this);
+        player.setEngine(engine);
+        //VISUAL SETTINGS
     }
 
     public int[] getDimentions() {
