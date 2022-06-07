@@ -15,7 +15,7 @@ public class Column{
         this.dist = dist;
         this.rect = new Rectangle2D.Double(col * (screenWidth / res ) /* finds the size of a column * col number */, top, screenWidth / res, bottom - top); //create rectangle object
         this.color = Color.getHSBColor(0,0, (float)((dist <= renderDist) ? 1 - (dist/8) : 0)); // add in the color thing later
-
+//        if(col == res / 2){this.color = Color.BLACK;} //crosshair line
     }
 
     public Rectangle2D getRect() {

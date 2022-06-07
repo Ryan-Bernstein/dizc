@@ -11,7 +11,7 @@ public class RayTraceTest {
                               {'#','.','.','.','.','.','#'},
                               {'.','#','.','.','.','#','#'}};
     private Player player;
-    private double FOV = Math.PI / 2, renderDistance = 4;
+    private double FOV = Math.PI / 1.5, renderDistance = 4;
     private int res;
     private double rayRes;
     private Display display;
@@ -27,8 +27,9 @@ public class RayTraceTest {
     private double[] findRays(){
         double[] out = new double[res];
         for(int i = 0; i < res; i++){
-            double rayAngle = (Math.toRadians(player.getAng()) - FOV / 2.0) + ((double) i / (double) res) * FOV;
+            double rayAngle = (Math.toRadians(player.getAng()) - FOV / 4.0) + ((double) i / (double) res) * FOV;
             out[i] = findDist(rayAngle);
+//            if(i * 2 == res){System.out.println(rayAngle);}
         }
         return out;
     }
@@ -52,7 +53,7 @@ public class RayTraceTest {
         for (int col =  0; col < res; col++) {
             double dist = dists[col];
             int nCeiling = (dist > 2) ? (int)((screenHeight / 2.0) - screenHeight / ((double) dist)) : (int)((screenHeight / 2.0) - screenHeight / ((double) 2)) ;
-            System.out.print(nCeiling);
+//            System.out.print(nCeiling);
             int nfloor = screenHeight - nCeiling;
             out.add(new Column(nCeiling, nfloor, res, col * 2 + 1, dist, screenWidth));
             out.add(new Column(nCeiling, nfloor, res, col * 2, dist, screenWidth));

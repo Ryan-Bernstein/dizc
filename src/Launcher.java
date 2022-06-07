@@ -35,7 +35,7 @@ public class Launcher {
 
                 display.addKeyListener(display);
                 display.setFocusable(true);
-                display.setBackground(Color.RED);
+//                display.setBackground(Color.RED);
                 display.repaint();
                 frame.getContentPane().add(display);
                 frame.pack();
