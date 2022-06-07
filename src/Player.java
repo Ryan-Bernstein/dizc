@@ -21,7 +21,9 @@ public class Player extends Entity {
 
     public void check(double x, double y){
         if(field == null){field = engine.getField();}
-        if(field[(int) getX()][(int) getY()] == '#'){
+        if(!((int) getX() > 0 && (int) getX() < field.length) || //in bounds X
+        !((int) getY() > 0 && (int) getY() < field[0].length)
+        || field[(int) getX()][(int) getY()] == '#'){
             setX(x);
             setY(y);
         }
@@ -29,9 +31,15 @@ public class Player extends Entity {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "\'" + name + "\'/" + getX() + "," + getY() + "/(" + getAng() + ')' +
-                '}';
+        String out = "";
+        for(char[] row: field){
+            for(char bit: row){
+                //add player thing
+                out += bit;
+            }
+            out += "\n";
+        }
+        return out;
     }
 
     public void setEngine(RayTraceTest engine) {
