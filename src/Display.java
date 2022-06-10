@@ -15,7 +15,7 @@ public class Display extends JPanel implements KeyListener {
         this.dimentions[0] = width;
         this.dimentions[1] = height;
         this.player = player;
-        this.engine = new RayTraceTest(player, 600, 0.01, this);
+        this.engine = new RayTraceTest(player, 1000, 0.01, this);
         player.setEngine(engine);
         //VISUAL SETTINGS
     }

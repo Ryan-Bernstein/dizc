@@ -10,6 +10,8 @@ public class RayTraceTest {
                               {'.','.','#','#','#','.','#'},
                               {'#','.','.','.','.','.','#'},
                               {'.','#','.','.','.','#','#'}};
+
+
     private Player player;
     private double FOV = Math.PI / 1.5, renderDistance = 4;
     private int res;
@@ -27,10 +29,39 @@ public class RayTraceTest {
         this.display = display;
     }
 
+
+    private void pickField(int choice){
+        switch (choice){
+            case 0:
+                this.field = new char[][]{
+                        {'S','.','.','.','.','.','.','#','.','.','.','.','.','.','#','.','.','.','.'},
+                        {'.','.','.','.','.','.','.','#','.','.','.','.','.','.','#','.','.','.','.'},
+                        {'#','#','#','#','.','.','.','#','.','.','.','#','.','.','.','#','.','.','.'},
+                        {'.','.','.','.','#','#','.','.','#','.','.','.','#','.','.','#','.','.','.'},
+                        {'.','.','.','.','.','#','.','.','.','#','.','.','#','.','.','#','.','.','.'},
+                        {'.','.','.','.','.','.','#','.','.','#','.','.','#','.','.','#','.','.','.'},
+                        {'.','.','.','.','.','.','#','.','.','.','.','.','#','.','.','#','.','.','.'},
+                        {'.','.','.','.','.','.','#','.','.','.','.','.','#','.','.','#','.','.','.'},
+                        {'.','.','.','.','.','.','.','#','.','.','.','#','#','.','.','#','.','.','.'},
+                        {'.','.','.','.','.','.','.','.','#','#','#','.','#','.','.','#','.','.','.'},
+                        {'.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','#','.','.','.'},
+                        {'.','.','.','.','.','.','.','.','.','.','.','.','#','.','#','.','.','.','.'},
+                        {'.','.','.','.','.','.','.','.','.','.','.','.','#','.','#','.','.','.','.'},
+                        {'.','.','.','.','.','.','.','.','.','.','.','.','#','.','#','#','.','.','.'},
+                        {'.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','.','#','.','.'},
+                        {'.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','.','#','.','.'},
+                        {'.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','#','.','.','.'},
+                        {'.','.','.','.','.','.','.','.','.','.','.','#','F','#','#','.','.','.','.'},
+                        {'.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','.','.','.'},
+                        {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'},
+                        {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'},
+                        {'.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.'}};
+        }
+    }
     private double[] findRays(){
         double[] out = new double[res];
         for(int i = 0; i < res; i++){
-            double rayAngle = (Math.toRadians(player.getAng()) - FOV / (display.getWidth() * .0023) + ((double) i / (double) res) * FOV);
+            double rayAngle = (Math.toRadians(player.getAng()) - FOV / (display.getWidth() * .0011) + ((double) i / (double) res) * FOV);
             out[i] = findDist(rayAngle);
 //            if(i * 2 == res){System.out.println(rayAngle);}
         }
@@ -39,9 +70,9 @@ public class RayTraceTest {
     private double findDist(double rayAngle){
         double distanceToWall = 0, yUnitV = Math.sin(rayAngle), xUnitV = Math.cos(rayAngle);
         double currX = player.getX(), currY = player.getY();
-        while(((int) currX > 0 && (int) currX < field.length)&& //in bounds X
-                ((int) currY > 0 && (int) currY < field[0].length)&&// in bounds Y
-                (field[(int) currX][(int) currY] == '.')) // no wall detected
+        while(((int) currX + 1> 0 && (int) currX < field.length)&& //in bounds X
+                ((int) currY + 1 > 0 && (int) currY < field[0].length)&&// in bounds Y
+                (field[(int) currX][(int) currY] != '#')) // no wall detected
         {
             currX += rayRes * xUnitV; //increment by the unit vector x
             currY -= rayRes * yUnitV; //increment by the unit vector y -= because origin is top left

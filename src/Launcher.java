@@ -16,7 +16,7 @@ public class Launcher {
      */
     public Launcher() {
         if(this.player == null){
-            this.player = new Player("Dam", 3.5,3.5,0);
+            this.player = new Player("Dam", 1,1,0);
             Scanner input = new Scanner(System.in);
             System.out.print("enter screen width in pixels: ");
             int width = input.nextInt();
@@ -48,7 +48,7 @@ public class Launcher {
                 frame.setLocationRelativeTo(null);
                 frame.setSize(display.getWidth(), display.getHeight());
                 frame.setVisible(true);
-
+                if(player.isWin()){frame.dispose();}
             }
         });
 
