@@ -61,7 +61,7 @@ public class RayTraceTest {
     private double[] findRays(){
         double[] out = new double[res];
         for(int i = 0; i < res; i++){
-            double rayAngle = (Math.toRadians(player.getAng()) - FOV / (display.getWidth() * .0011) + ((double) i / (double) res) * FOV);
+            double rayAngle = (Math.toRadians(player.getAng()) - FOV / (display.getWidth() * .0038 /*.00115 ofr my monitor*/) + ((double) i / (double) res) * FOV);
             out[i] = findDist(rayAngle);
 //            if(i * 2 == res){System.out.println(rayAngle);}
         }
