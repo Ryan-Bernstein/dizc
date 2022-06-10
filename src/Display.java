@@ -30,15 +30,15 @@ public class Display extends JPanel implements KeyListener {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         int w = getWidth(), h = getHeight();
-        Color color1 = Color.getHSBColor(64, 66, 80);
+        Color color1 = Color.getHSBColor(64, 66, (float) .30);
         Color color2 = Color.black;
         GradientPaint gp = new GradientPaint(w / 2, 0, color1, w / 2, h / 2, color2);
         g2d.setPaint(gp);
         g2d.fillRect(0,0, dimentions[0], dimentions[1] / 2);
 
-        color1 = Color.getHSBColor(1, 90, 60);
-        color2 = Color.getHSBColor(0, 90, 40);
-        gp = new GradientPaint(w / 2, h, color1, w / 2, h / 2, color2);
+        color1 = Color.getHSBColor((float) .616, (float) .4, 0);
+        color2 = Color.getHSBColor((float) .616, (float) .4, (float) .6);
+        gp = new GradientPaint(w / 2, h / 2, color1, w / 2, h, color2);
         g2d.setPaint(gp);
         g2d.fillRect(0,h / 2, w, h / 2);
 
