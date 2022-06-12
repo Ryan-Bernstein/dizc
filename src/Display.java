@@ -29,28 +29,44 @@ public class Display extends JPanel implements KeyListener {
 
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-        int w = getWidth(), h = getHeight();
-        Color color1 = Color.getHSBColor(64, 66, (float) .30);
-        Color color2 = Color.black;
-        GradientPaint gp = new GradientPaint(w / 2, 0, color1, w / 2, h / 2, color2);
-        g2d.setPaint(gp);
-        g2d.fillRect(0,0, dimentions[0], dimentions[1] / 2);
+        if(!player.isWin()) {
+            int w = getWidth(), h = getHeight();
+            Color color1 = Color.getHSBColor(64, 66, (float) .30);
+            Color color2 = Color.black;
+            GradientPaint gp = new GradientPaint(w / 2, 0, color1, w / 2, h / 2, color2);
+            g2d.setPaint(gp);
+            g2d.fillRect(0, 0, dimentions[0], dimentions[1] / 2);
 
-        color1 = Color.getHSBColor((float) .616, (float) .4, 0);
-        color2 = Color.getHSBColor((float) .616, (float) .4, (float) .6);
-        gp = new GradientPaint(w / 2, h / 2, color1, w / 2, h, color2);
-        g2d.setPaint(gp);
-        g2d.fillRect(0,h / 2, w, h / 2);
+            color1 = Color.getHSBColor((float) .616, (float) .4, 0);
+            color2 = Color.getHSBColor((float) .616, (float) .4, (float) .6);
+            gp = new GradientPaint(w / 2, h / 2, color1, w / 2, h, color2);
+            g2d.setPaint(gp);
+            g2d.fillRect(0, h / 2, w, h / 2);
 
 //        Graphics2D g2d = (Graphics2D) g.create(); // create graphics engine
-        ArrayList<Column> renderSet= engine.getRenderSet();
-        for (Column col: renderSet) {
-            g.setColor(col.getColor());
-            Rectangle2D rect = col.getRect();
-            g.fillRect((int)rect.getX(), (int)rect.getY(), (int)rect.getWidth(), (int)rect.getHeight());
+            ArrayList<Column> renderSet = engine.getRenderSet();
+            for (Column col : renderSet) {
+                g.setColor(col.getColor());
+                Rectangle2D rect = col.getRect();
+                g.fillRect((int) rect.getX(), (int) rect.getY(), (int) rect.getWidth(), (int) rect.getHeight());
+            }
+
+            //gps
+            g2d.setColor(Color.BLACK);
+            g2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 16));
+            drawString(g2d, player.toString(), 0, getHeight() / 2);
+        }else{
+            g2d.setColor(Color.BLACK);
+            g2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 100));
+            drawString(g2d, "YOU WIN", getWidth() / 2 - 190, getHeight() / 2 - 100);
         }
     }
 
+    void drawString(Graphics g, String text, int x, int y) {
+        int lineHeight = g.getFontMetrics().getHeight();
+        for (String line : text.split("\n"))
+            g.drawString(line, x, y += lineHeight);
+    }
     @Override
     public void keyPressed(KeyEvent e) { //the keyboard listener implementation
         // New key press (ps I took part of this code)
@@ -79,7 +95,8 @@ public class Display extends JPanel implements KeyListener {
 //            System.out.print(col.getHeight() + ",");
 //        } // debugging
 //        System.out.println();
-        System.out.println(player);//temp line
+
+//        System.out.println(player);//temp line
         repaint();//temp
     }
 

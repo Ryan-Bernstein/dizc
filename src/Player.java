@@ -25,30 +25,41 @@ public class Player extends Entity {
     }
 
     public void check(double x, double y){
-        if(field == null){field = engine.getField();}
+        if(field == null){field = engine.getField(); init();}
         if(!((int) getX() + 1 > 0 && (int) getX() < field.length) || //in bounds X
         !((int) getY() + 1 > 0 && (int) getY() < field[0].length)
         || field[(int) getX()][(int) getY()] == '#'){
             setX(x);
             setY(y);
         }
-        if((int) getX() == vicX && (int) getY() == vicX){
+//        System.out.println((int) getX() + ", " + (int) getY() + ":" + vicX + ", " + vicY);
+        if((int) getX() == vicX && (int) getY() == vicY){
             this.win = true;
         }
 
     }//tbi
+    private void init(){
+        for (int row = 0; row < field.length; row++) {
+            for (int col = 0; col < field[0].length; col++) {
+               char bit = field[row][col];
+               if(bit == 'S'){setPos(row, col, 0);}
+               if(bit == 'F'){this.vicX = row; this.vicY = col;}
+            }
+        }
+    }
 
     @Override
     public String toString() {
         String out = "";
-//        for(char[] row: field){
-//            for(char bit: row){
-//                //add player thing
-//                out += bit;
-//            }
-//            out += "\n";
-//        }
-        out += getX() + ", " + getY();
+        for(int row = 0; row < field.length; row++){
+            for(int col = 0; col < field[0].length; col++){
+                //add player thing
+                char bit = field[row][col];
+                out += ((int) getX() == row && (int) getY() == col) ? "O" : bit;
+            }
+            out += "\n";
+        }
+//        out += getX() + ", " + getY();
         return out;
     }
 

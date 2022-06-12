@@ -29,9 +29,12 @@ public class Launcher {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+//                System.out.println(player.isWin());
+//                if(!player.isWin()){
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                         UnsupportedLookAndFeelException ex) {
                     // ex.printStackTrace();
                 }
 
@@ -48,8 +51,11 @@ public class Launcher {
                 frame.setLocationRelativeTo(null);
                 frame.setSize(display.getWidth(), display.getHeight());
                 frame.setVisible(true);
-                if(player.isWin()){frame.dispose();}
-            }
+
+
+
+
+        }
         });
 
     }
