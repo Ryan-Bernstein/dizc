@@ -23,7 +23,11 @@ public class Launcher {
 
             System.out.print("enter screen height in pixels: ");
             int height = input.nextInt();
-            this.display = new Display(player, width, height);
+
+            System.out.print("enter 1, 2, or 3 for their corresponding difficulties, all other responses will be defaulted to 3: ");
+            int choice= input.nextInt();
+
+            this.display = new Display(player, width, height, choice);
 
         }
         EventQueue.invokeLater(new Runnable() {

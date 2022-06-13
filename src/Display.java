@@ -11,11 +11,11 @@ public class Display extends JPanel implements KeyListener {
     private RayTraceTest engine;
     private int[] dimentions = {1024, 768};
 
-    public Display(Player player, int width, int height) {
+    public Display(Player player, int width, int height, int choice) {
         this.dimentions[0] = width;
         this.dimentions[1] = height;
         this.player = player;
-        this.engine = new RayTraceTest(player, 1000, 0.01, this);
+        this.engine = new RayTraceTest(player, 1000, 0.01, this, choice);
         player.setEngine(engine);
         //VISUAL SETTINGS
     }
